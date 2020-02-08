@@ -1,0 +1,18 @@
+{
+  "name": "viber_bot",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node start.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "babel-polyfill": "^6.26.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "ngrok": "^3.2.7",
+    "viber-bot": "^1.0.16"
+  }
+}
