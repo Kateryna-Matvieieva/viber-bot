@@ -12,6 +12,8 @@
     "babel-polyfill": "^6.26.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.11",
     "ngrok": "^3.2.7",
     "viber-bot": "^1.0.16"
   }

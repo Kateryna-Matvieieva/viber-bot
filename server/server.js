@@ -1,6 +1,7 @@
 import express from 'express';
 import ngrok from 'ngrok';
 import { Bot as ViberBot, Events as BotEvents, Message } from 'viber-bot';
+import UserRepository from '../UserRepository'
 
 
 const app = express();
@@ -36,11 +37,18 @@ app.listen(port, async () => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.send('App is running, Viber Bot is available')
-})
 
-// bot.getBotProfile().then(response => console.log(response));
+const userRepository = new UserRepository(bot);
+
+
+app.get('/', async (req, res) => {
+  await userRepository.saveLastMember();
+  const users = await userRepository.get();
+  console.log(users)
+  res.send('App is running, Viber Bot is available!!!'+ users[0].name)
+});
+
+
 
 
 export default app;
