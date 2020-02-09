@@ -4,7 +4,6 @@ import UserProfile from '../db/models/userProfile';
 export default class userRepository {
   constructor(bot) {
     this.bot = bot;
-    this.userId;
   }
 
   async saveLastMember() {
@@ -15,20 +14,22 @@ export default class userRepository {
       .then(res => res.length);
 
     if(!userExists) {
-
-      const newUser = new UserProfile(user)
+      const newUser = new UserProfile(user);
       await newUser.save();
     }
 
-    this.userId = user.id;
+    return user;
   }
 
-  async update(filter, update) {
-    await UserProfile.findOneAndUpdate(filter, update);
+  async updateCurrentUser(newData) {
+    await UserProfile.find()
+      .sort({ _id: -1 })
+      .limit(1)
+      .updateOne(newData);
   }
 
   async get() {
-    return UserProfile.find({});
+    return UserProfile.find();
   }
 
 }

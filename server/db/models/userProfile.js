@@ -1,11 +1,14 @@
 import mongoose, { Schema} from 'mongoose';
 
 const userProfileScema = new Schema({
-  user: Schema.ObjectId,
+  _id: Schema.ObjectId,
   id: String,
   name: String,
   avatar: String,
-  role: String
+  role: String,
+  firstName: String,
+  lastName: String,
+  gender: { type: String, enum: ['Male', 'Female', 'Developer']}
 });
 
 const UserProfile = mongoose.model('UserProfile', userProfileScema);
