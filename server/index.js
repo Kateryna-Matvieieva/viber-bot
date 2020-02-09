@@ -17,7 +17,7 @@ app.listen(port, async () => {
   console.log(`Application running on port: ${port}`);
 });
 
-app.get('/', callbacks.initUserSession);
+app.get('/init_user_session', callbacks.initUserSession);
 
 
 

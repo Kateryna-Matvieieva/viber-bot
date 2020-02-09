@@ -1,34 +1,43 @@
-const GENDER_BUTTONS = {
+const DAY_BUTTONS = {
 	"ButtonsGroupColumns": 6,
-	"ButtonsGroupRows": 3,
+	"ButtonsGroupRows": 4,
 	"BgColor": "#FFFFFF",
 	"Buttons": [{
 		"ActionType": "reply",
-		"ActionBody": "Male",
+		"ActionBody": "Day",
 		"BgColor": "#85bb65",
-		"Text": "Male",
+		"Text": "Day",
 		"TextOpacity": 60,
 		"Rows": 1,
 		"Columns": 6
 	},
 	{
 		"ActionType": "reply",
-		"ActionBody": "Female",
+		"ActionBody": "Month",
 		"BgColor": "#85bb65",
-		"Text": "Female",
+		"Text": "Month",
 		"TextOpacity": 60,
 		"Rows": 1,
 		"Columns": 6
 	},
 	{
 		"ActionType": "reply",
-		"ActionBody": "Developer",
+		"ActionBody": "Year",
 		"BgColor": "#85bb65",
-		"Text": "Developer",
+		"Text": "Year",
+		"TextOpacity": 60,
+		"Rows": 1,
+		"Columns": 6
+	},
+	{
+		"ActionType": "reply",
+		"ActionBody": "Submit",
+		"BgColor": "#85bb65",
+		"Text": "Submit",
 		"TextOpacity": 60,
 		"Rows": 1,
 		"Columns": 6
 	}]
 };
 
-export default GENDER_BUTTONS;
+export default DAY_BUTTONS;
