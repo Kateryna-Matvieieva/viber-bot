@@ -71,11 +71,13 @@ bot.onTextMessage(/^Submit$/,
       date = {};
       const userInfo = await userRepository.getCurrentUser();
 
-      delete userInfo.id;
-      delete userInfo.avatar;
-
       response.send([
-        new BotMessage.Text(`Your info:\n ${JSON.stringify(userInfo)}`),
+        new BotMessage.Text(`Your info:\n 
+          Name: ${userInfo[0].firstName},
+          Sername: ${userInfo[0].lastName},
+          Gender: ${userInfo[0].gender},
+          Date: ${userInfo[0].date}
+        `),
       ])
     }
   }
