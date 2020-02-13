@@ -1,13 +1,14 @@
 import { Bot as ViberBot, Events as BotEvents, Message } from 'viber-bot';
 import UserRepository from '../UserRepository';
 import samples from '../viberDataSamples';
+import { months } from '../viberDataSamples/monthsKeyBoard';
 
 export const BotMessage = Message;
 const userRepository = new UserRepository(bot);
 
 const expects = ['firstName', 'lastName', 'gender'];
 let currentExpect;
-const date = [];
+let date = {};
 
 const bot = new ViberBot({
 	authToken: process.env.BOT_ACCOUNT_TOKEN,
@@ -36,14 +37,47 @@ bot.onTextMessage(/^Male|Female|Developer$/,
   }
 );
 
-bot.onTextMessage(/Day/, (message, response) => {
-  response.send(new BotMessage.Keyboard(samples.daysKeyBoard)).catch(err => console.error(err));
+bot.onTextMessage(/^Day$/, (message, response) => {
+  response.send(new BotMessage.Keyboard(samples.daysKeyBoard));
 });
 
-bot.onTextMessage(/\d\d?(st|nd|rd|th)/, (message, response) => {
-  date.push(message.text);
-  console.log(date);
+bot.onTextMessage(/^Month$/, (message, response) => {
+  response.send(new BotMessage.Keyboard(samples.monthsKeyBoard));
 });
+
+bot.onTextMessage(/^Year$/, (message, response) => {
+  response.send(new BotMessage.Keyboard(samples.yearsKeyBoard));
+});
+
+bot.onTextMessage(/^\d\d?(st|nd|rd|th)$/, (message, response) => {
+  date.day = message.text;
+});
+
+bot.onTextMessage(new RegExp(months.join('|')), (message, response) => {
+  date.month = message.text;
+});
+
+bot.onTextMessage(/^\d{4,}$/, (message, response) => {
+  date.year = message.text;
+});
+
+bot.onTextMessage(/^Submit$/,
+  async (message, response) => {
+    const newDate = Object.values(date);
+    if (newDate.length === 3) {
+      userRepository.updateCurrentUser({ date: newDate.join(' ')});
+      date = {};
+      const userInfo = await userRepository.getCurrentUser();
+
+      delete userInfo.id;
+      delete userInfo.avatar;
+
+      response.send([
+        new BotMessage.Text(`Your info:\n ${JSON.stringify(userInfo)}`),
+      ])
+    }
+  }
+);
 
 bot.onTextMessage(/[\w-]{2,}/i, (message, response) => {
   switch(currentExpect) {

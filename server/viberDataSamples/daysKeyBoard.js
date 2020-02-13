@@ -10,9 +10,7 @@ const buttonSample = {
 	BgColor: "#e6f5ff",
 	BgLoop: true,
 	ActionType: "reply",
-	ActionBody: "Yes",
-	Text: "Text"
-}
+};
 
 const createDaysArray = () => {
 	const arr = [];
@@ -36,12 +34,12 @@ const createDaysArray = () => {
 	return arr;
 }
 
-const days = createDaysArray();
+DAYS_KEYBOARD.Buttons = createDaysArray();
 
-days.forEach(day => DAYS_KEYBOARD.Buttons.push({
+DAYS_KEYBOARD.Buttons = DAYS_KEYBOARD.Buttons.map(day => ({
 	...buttonSample,
 	ActionBody: day,
 	Text: day
-}))
+}));
 
 export default DAYS_KEYBOARD;

@@ -8,7 +8,8 @@ const userProfileScema = new Schema({
   role: String,
   firstName: String,
   lastName: String,
-  gender: { type: String, enum: ['Male', 'Female', 'Developer']}
+  gender: { type: String, enum: ['Male', 'Female', 'Developer']},
+  date: String
 });
 
 const UserProfile = mongoose.model('UserProfile', userProfileScema);

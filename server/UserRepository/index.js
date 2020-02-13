@@ -21,15 +21,17 @@ export default class userRepository {
     return user;
   }
 
-  async updateCurrentUser(newData) {
-    await UserProfile.find()
+  updateCurrentUser(newData) {
+    UserProfile.find()
       .sort({ _id: -1 })
       .limit(1)
       .updateOne(newData);
   }
 
-  async get() {
-    return UserProfile.find();
+  getCurrentUser() {
+    return UserProfile.find()
+    .sort({ _id: -1 })
+    .limit(1);
   }
 
 }
