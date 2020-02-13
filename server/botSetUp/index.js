@@ -1,4 +1,4 @@
-import { Bot as ViberBot, Events as BotEvents, Message } from 'viber-bot';
+import { Bot as ViberBot, Message } from 'viber-bot';
 import UserRepository from '../UserRepository';
 import samples from '../viberDataSamples';
 import { months } from '../viberDataSamples/monthsKeyBoard';
@@ -16,6 +16,8 @@ const bot = new ViberBot({
   avatar: "../public/chat-bot-for-social-networking.jpg"
 });
 
+//Store all callbacks into separate files with one entry point for all of them
+//each module has `regex`, `order number` and `callback`
 
 bot.onTextMessage(/^Start$/i,
   (message, response) => {
@@ -79,7 +81,7 @@ bot.onTextMessage(/^Submit$/,
   }
 );
 
-bot.onTextMessage(/[\w-]{2,}/i, (message, response) => {
+bot.onTextMessage(/[\w-]{2,}/i, (message, response) => { //should be the last as has the most 'general' regex
   switch(currentExpect) {
     case 0:
       userRepository.updateCurrentUser({ [expects[currentExpect]]: message.text});
