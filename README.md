@@ -8,4 +8,6 @@ https://github.com/KaterynaMatvjejeva/viber-bot/blob/master/server/index.js#L27 
 And for now bot is deployed on Heroku and it will be activated for quiz after entering the link https://viber-bot6843.herokuapp.com/init_user_session
 
 The example of quiz:
+
+
 ![](video_2020-04-16_15-44-58.gif)
